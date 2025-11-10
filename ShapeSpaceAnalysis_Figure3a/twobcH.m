@@ -1,0 +1,33 @@
+function res = twobcH(ya,yb,para,ka,ri,H,vol0)
+% psi = y(1);
+% dpsi = y(2);
+% r = y(3);
+% z = y(4);
+% alpha = y(5);
+% beta = y(6);
+% vu = y(7);
+% dvu = y(8);
+% sigma = y(9);
+% dsigma = y(10);
+% vol = y(11);
+% h = y(12);
+% ka = 1;
+c0 = 0;
+h = para(1);
+alpha_i = ka/2*ri*(c0^2-ya(2)^2/h^2);
+res = [ ya(1)-0;...   % psi(0) = 0;
+    ya(3)-ri;...      % r(0) = r0;
+    ya(6);...         % beta(0) = 0;
+    ya(5)-alpha_i;... % alpha(0)=ka/2*(c0^2-dpsi^2/h^2)...
+    yb(6);...         % beta(1) = 0;
+    ya(7)-0;...       % vu(0) = 0;
+    ya(10)-0;...      % sigma'(0)=0;
+    ya(11)-0;...      % vol(0) = 0;
+    ya(12)-h;...      % h(0) = h0;
+    yb(1)-pi;...      % psi(1) = 0;
+    yb(3)-ri;...      % r(1) = r0;
+    yb(7)-0;...       % vu(1) = 0;
+    yb(10)-0;...      % sigma'(1) = 0;
+    yb(11)-vol0;...   % vol(1) = vol0;
+    yb(4)+ya(4)-0;...
+    ya(4)-yb(4)-H];     
